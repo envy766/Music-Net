@@ -1,278 +1,262 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MusicNet  — Rizal Owner </title>
+<title>MusicNet — Rizal Owner</title>
 <style>
-  :root{
-    --bg1:#0f1020; --bg2:#0b2545; --accent:#6ef0ff; --accent2:#8a4fff;
-    --card:#0f1720aa; --muted: #cfd8dcaa;
-    --glow: 0 6px 30px rgba(110,240,255,0.08);
-    --neon: 0 0 18px rgba(138,79,255,0.14), 0 0 35px rgba(110,240,255,0.06);
-  }
+:root{
+  --bg1:#0f1020; --bg2:#0b2545; --accent:#6ef0ff; --accent2:#8a4fff;
+  --card:#0f1720aa; --muted: #cfd8dcaa;
+  --glow: 0 6px 30px rgba(110,240,255,0.08);
+  --neon: 0 0 18px rgba(138,79,255,0.14), 0 0 35px rgba(110,240,255,0.06);
+}
 
-  /* full-screen animated gradient */
-  html,body{
-    height:100%;
-    margin:0;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    background:linear-gradient(120deg,var(--bg1),var(--bg2));
-    color:#e8f2ff;
-  }
+/* full-screen animated gradient */
+html,body{
+  height:100%; margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:linear-gradient(120deg,var(--bg1),var(--bg2));
+  color:#e8f2ff;
+}
 
-  /* animated moving gradient overlay */
-  .bg-anim{
-    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
-    background: radial-gradient(circle at 10% 20%, rgba(110,240,255,0.06), transparent 6%),
-                radial-gradient(circle at 70% 80%, rgba(138,79,255,0.06), transparent 8%);
-    mix-blend-mode:overlay;
-    animation: move 14s linear infinite;
-    filter: blur(40px);
-  }
-  @keyframes move {
-    0%{transform:translate(0,0) rotate(0deg)}
-    50%{transform:translate(-5%,3%) rotate(120deg)}
-    100%{transform:translate(0,0) rotate(360deg)}
-  }
+/* animated moving gradient overlay */
+.bg-anim{
+  position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  background: radial-gradient(circle at 10% 20%, rgba(110,240,255,0.06), transparent 6%),
+              radial-gradient(circle at 70% 80%, rgba(138,79,255,0.06), transparent 8%);
+  mix-blend-mode:overlay;
+  animation: move 14s linear infinite;
+  filter: blur(40px);
+}
+@keyframes move {
+  0%{transform:translate(0,0) rotate(0deg)}
+  50%{transform:translate(-5%,3%) rotate(120deg)}
+  100%{transform:translate(0,0) rotate(360deg)}
+}
 
-  /* page layout */
-  .wrap{
-    position:relative; z-index:2;
-    max-width:980px; margin:28px auto; padding:24px;
-  }
+/* page layout */
+.wrap{ position:relative; z-index:2; max-width:980px; margin:28px auto; padding:24px; }
 
-  header.top{
-    display:flex; align-items:center; gap:16px; justify-content:space-between;
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    padding:18px; border-radius:14px; box-shadow:var(--glow);
-    border:1px solid rgba(255,255,255,0.03);
-  }
+header.top{
+  display:flex; align-items:center; gap:16px; justify-content:space-between;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:18px; border-radius:14px; box-shadow:var(--glow);
+  border:1px solid rgba(255,255,255,0.03);
+}
 
-  .title-wrap{
-    display:flex; gap:14px; align-items:center;
-  }
-  .logo{
-    width:60px; height:60px; border-radius:12px;
-    display:grid; place-items:center; font-weight:700; color:var(--bg2);
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    box-shadow:var(--neon);
-  }
-  h1{
-    font-size:20px; margin:0; letter-spacing:0.6px;
-  }
-  p.subtitle{ margin:0; color:var(--muted); font-size:12px; opacity:0.95; }
+.title-wrap{ display:flex; gap:14px; align-items:center; }
+.logo{
+  width:60px; height:60px; border-radius:12px;
+  display:grid; place-items:center; font-weight:700; color:var(--bg2);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  box-shadow:var(--neon);
+}
+h1{ font-size:20px; margin:0; letter-spacing:0.6px; }
+p.subtitle{ margin:0; color:var(--muted); font-size:12px; opacity:0.95; }
 
-  /* marquee title */
-  .marquee{
-    overflow:hidden;
-    white-space:nowrap;
-    border-radius:999px; padding:6px 10px; background:rgba(255,255,255,0.02);
-    border:1px solid rgba(255,255,255,0.02);
-    flex: 0 0 auto;
-    max-width: 320px; /* tetap batasi lebar marquee */
-    min-width: 0;     /* penting agar flex shrink bekerja */
-  }
-  .marquee .track{
-    display:inline-block; padding-left:100%;
-    animation: scrollText 12s linear infinite;
-  }
-  @keyframes scrollText {
-    0%{ transform: translateX(0%); }
-    100%{ transform: translateX(-100%); }
-  }
+/* marquee title */
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-radius:999px; padding:6px 10px; background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.02);
+  flex: 0 0 auto; max-width:320px; min-width:0;
+}
+.marquee .track{
+  display:inline-block; padding-left:100%;
+  animation: scrollText 12s linear infinite;
+}
+@keyframes scrollText { 0%{transform:translateX(0%);} 100%{transform:translateX(-100%);} }
 
-  /* ---------- ADDED: horizontal scroll for header genre ---------- */
-  .header-right{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    min-width:0; /* allow children to shrink properly */
-  }
+/* horizontal scroll header */
+.header-right{ display:flex; align-items:center; gap:12px; min-width:0; }
+.filter-scroll{
+  display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  padding:6px 4px; align-items:center; flex:1 1 auto; min-width:0;
+}
+.filter-scroll::-webkit-scrollbar{ height:6px; }
+.filter-scroll::-webkit-scrollbar-thumb{
+  background: linear-gradient(90deg,var(--accent),var(--accent2));
+  border-radius:8px;
+}
+.filter-btn{
+  padding:8px 12px; border-radius:999px; font-size:13px; cursor:pointer;
+  background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted);
+  transition:all .18s; flex:0 0 auto; white-space:nowrap;
+}
+.filter-btn.active{
+  background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#000;
+  box-shadow:var(--neon); border:none;
+}
 
-  .filter-scroll{
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    padding:6px 4px;
-    align-items:center;
-    flex: 1 1 auto;  /* take remaining space and allow scrolling inside */
-    min-width:0;     /* critical to enable proper scroll on flex children */
-  }
-  .filter-scroll::-webkit-scrollbar{ height:6px; }
-  .filter-scroll::-webkit-scrollbar-thumb{
-    background: linear-gradient(90deg,var(--accent),var(--accent2));
-    border-radius:8px;
-  }
-  .filter-btn{
-    padding:8px 12px; border-radius:999px; font-size:13px; cursor:pointer;
-    background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted);
-    transition:all .18s;
-    flex:0 0 auto;      /* do not shrink, keep natural width */
-    white-space:nowrap; /* prevent wrapping */
-  }
-  .filter-btn.active{
-    background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#000;
-    box-shadow:var(--neon);
-    border:none;
-  }
-  /* --------------------------------------------------------------- */
+/* main grid */
+.grid{ margin-top:20px; display:grid; grid-template-columns:1fr 360px; gap:18px; }
 
-  /* main grid */
-  .grid{
-    margin-top:20px; display:grid; grid-template-columns: 1fr 360px; gap:18px;
-  }
+/* left: playlist */
+.card{ background:var(--card); border-radius:12px; padding:16px; border:1px solid rgba(255,255,255,0.03); }
+h2.section{ margin:0 0 12px 0; font-size:18px; }
+.filters{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.playlist{ max-height:560px; overflow:auto; padding-right:6px; }
+.song{
+  display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px;
+  margin-bottom:8px; cursor:pointer; transition:all .15s;
+  background:transparent; border:1px solid rgba(255,255,255,0.02);
+}
+.song:hover{ transform:translateX(6px); background:rgba(255,255,255,0.03); }
+.song.playing{ background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#000; box-shadow:var(--neon); }
+.song .meta{ flex:1; text-align:left; }
+.song .meta .title{ font-weight:600; font-size:14px; }
+.song .meta .artist{ font-size:12px; color:var(--muted); margin-top:4px; }
+.badge{ font-size:11px; padding:6px 8px; border-radius:999px; background: rgba(255,255,255,0.03); color:var(--muted); }
 
-  /* left: playlist */
-  .card{
-    background:var(--card);
-    border-radius:12px; padding:16px; border:1px solid rgba(255,255,255,0.03);
-  }
-  h2.section{ margin:0 0 12px 0; font-size:18px; }
+/* right: player */
+.player{ display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center; }
+.cover{
+  width:100%; height:190px; border-radius:12px; background:linear-gradient(135deg,#13131a,#2a1635);
+  display:grid; place-items:center; font-size:42px; color:rgba(255,255,255,0.9);
+  border:1px solid rgba(255,255,255,0.03);
+}
+.now-title{ font-weight:700; margin-top:8px; font-size:16px; }
+.now-artist{ color:var(--muted); font-size:13px; margin-top:6px; }
 
-  .filters{
-    display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;
-  }
+.controls{ display:flex; gap:12px; align-items:center; margin-top:6px; }
+.btn{
+  width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
+  display:grid; place-items:center; font-size:18px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color:var(--accent); box-shadow:var(--glow);
+  transition: transform .12s, box-shadow .12s;
+}
+.btn:hover{ transform:scale(1.06); }
+.btn.playing{ background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#000; box-shadow:var(--neon); }
 
-  .playlist{
-    max-height:560px; overflow:auto; padding-right:6px;
-  }
-  .song{
-    display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px;
-    margin-bottom:8px; cursor:pointer; transition:all .15s;
-    background:transparent; border:1px solid rgba(255,255,255,0.02);
-  }
-  .song:hover{ transform:translateX(6px); background:rgba(255,255,255,0.03); }
-  .song.playing{
-    background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#000; box-shadow:var(--neon);
-  }
-  .song .meta{ flex:1; text-align:left; }
-  .song .meta .title{ font-weight:600; font-size:14px; }
-  .song .meta .artist{ font-size:12px; color:var(--muted); margin-top:4px; }
+.progress{ width:100%; height:10px; background:rgba(255,255,255,0.04); border-radius:10px; overflow:hidden; }
+.progress > .bar{ height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
 
-  .badge{ font-size:11px; padding:6px 8px; border-radius:999px; background: rgba(255,255,255,0.03); color:var(--muted); }
+.time-row{ display:flex; justify-content:space-between; width:100%; font-size:12px; color:var(--muted); margin-top:6px; }
 
-  /* right: player */
-  .player{
-    display:flex; flex-direction:column; gap:12px; align-items:center; text-align:center;
-  }
-  .cover{
-    width:100%; height:190px; border-radius:12px; background:linear-gradient(135deg,#13131a,#2a1635);
-    display:grid; place-items:center; font-size:42px; color:rgba(255,255,255,0.9);
-    border:1px solid rgba(255,255,255,0.03);
-  }
-  .now-title{ font-weight:700; margin-top:8px; font-size:16px; }
-  .now-artist{ color:var(--muted); font-size:13px; margin-top:6px; }
+.bottom-controls{ display:flex; gap:10px; align-items:center; margin-top:10px; width:100%; justify-content:space-between; }
+.vol{ display:flex; gap:6px; align-items:center; color:var(--muted); }
+input[type=range]{ -webkit-appearance:none; appearance:none; background:transparent; width:140px; }
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; height:14px; width:14px; border-radius:50%;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  box-shadow:var(--neon); cursor:pointer; border:2px solid rgba(0,0,0,0.2);
+}
 
-  .controls{
-    display:flex; gap:12px; align-items:center; margin-top:6px;
-  }
-  .btn{
-    width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
-    display:grid; place-items:center; font-size:18px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    color:var(--accent); box-shadow:var(--glow);
-    transition: transform .12s, box-shadow .12s;
-  }
-  .btn:hover{ transform:scale(1.06); }
-  .btn.playing{ background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#000; box-shadow:var(--neon); }
-
-  .progress{
-    width:100%; height:10px; background:rgba(255,255,255,0.04); border-radius:10px; overflow:hidden;
-  }
-  .progress > .bar{
-    height:100%; width:0%; background:linear-gradient(90deg,var(--accent),var(--accent2));
-  }
-
-  .time-row{ display:flex; justify-content:space-between; width:100%; font-size:12px; color:var(--muted); margin-top:6px; }
-
-  .bottom-controls{ display:flex; gap:10px; align-items:center; margin-top:10px; width:100%; justify-content:space-between; }
-  .vol{ display:flex; gap:6px; align-items:center; color:var(--muted); }
-  input[type=range]{ -webkit-appearance:none; appearance:none; background:transparent; width:140px; }
-  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; height:14px; width:14px; border-radius:50%; background:linear-gradient(90deg,var(--accent),var(--accent2)); box-shadow:var(--neon); cursor:pointer; border:2px solid rgba(0,0,0,0.2); }
-
-  /* responsive */
-  @media (max-width:900px){
-    .grid{ grid-template-columns: 1fr; }
-    .player{ order:-1; }
-    .marquee{ display:none; }
-  }
+/* responsive */
+@media (max-width:900px){
+  .grid{ grid-template-columns:1fr; }
+  .player{ order:-1; }
+  .marquee{ display:none; }
+}
 </style>
 </head>
 <body>
-  <div class="bg-anim" aria-hidden="true"></div>
+<div class="bg-anim" aria-hidden="true"></div>
+<div class="wrap">
+<header class="top">
+  <div class="title-wrap">
+    <div class="logo">MN</div>
+    <div>
+      <h1>MusicNet</h1>
+      <p class="subtitle">Rizal Owner • Koleksi Mylist</p>
+    </div>
+  </div>
 
-  <div class="wrap">
-    <header class="top">
-      <div class="title-wrap">
-        <div class="logo">MN</div>
-        <div>
-          <h1>MusicNet</h1>
-          <p class="subtitle">Rizal Owner • Koleksi Mylist</p>
-        </div>
+  <div class="header-right">
+    <div class="marquee" title="Now Playing">
+      <div class="track" id="marqueeText">Selamat datang di MusicNet — Klik lagu untuk memutar...</div>
+    </div>
+
+    <div class="filter-scroll" aria-label="Genre filters">
+      <button class="filter-btn active" data-genre="all" onclick="filterGenre('all')">All</button>
+      <button class="filter-btn" data-genre="pop" onclick="filterGenre('pop')">Pop</button>
+      <button class="filter-btn" data-genre="slow" onclick="filterGenre('slow')">Slow</button>
+      <button class="filter-btn" data-genre="cover" onclick="filterGenre('cover')">Cover</button>
+      <button class="filter-btn" data-genre="poprock" onclick="filterGenre('poprock')">Pop Rock</button>
+      <button class="filter-btn" data-genre="breakbeat" onclick="filterGenre('breakbeat')">Breakbeat</button>
+      <button class="filter-btn" data-genre="jazz" onclick="filterGenre('jazz')">Jazz</button>
+      <button class="filter-btn" data-genre="edm" onclick="filterGenre('edm')">EDM</button>
+      <button class="filter-btn" data-genre="rock" onclick="filterGenre('rock')">Rock</button>
+      <button class="filter-btn" data-genre="retro" onclick="filterGenre('retro')">Retro</button>
+    </div>
+  </div>
+</header>
+
+<div class="grid">
+<div>
+  <div class="card">
+    <h2 class="section">Playlist</h2>
+    <div class="filters" id="filters"></div>
+    <div class="playlist" id="playlist"></div>
+  </div>
+</div>
+
+<aside>
+  <div class="card player">
+    <div class="cover" id="coverBox">🎵</div>
+    <div class="now-title" id="nowTitle">Belum diputar</div>
+    <div class="now-artist" id="nowArtist">—</div>
+
+    <div class="controls">
+      <button class="btn" id="prevBtn" title="Previous">⏮</button>
+      <button class="btn playBtn" id="playBtn" title="Play">▶</button>
+      <button class="btn" id="nextBtn" title="Next">⏭</button>
+    </div>
+
+    <div class="progress" id="progressWrap" title="Progress">
+      <div class="bar" id="progressBar"></div>
+    </div>
+    <div class="time-row">
+      <div id="currentTime">00:00</div>
+      <div id="duration">00:00</div>
+    </div>
+
+    <div class="bottom-controls">
+      <div class="vol">
+        <span style="font-size:13px;color:var(--muted)">🔊</span>
+        <input id="volRange" type="range" min="0" max="1" step="0.01" value="1">
       </div>
-
-      <!-- right side: marquee + genre scroll -->
-      <div class="header-right">
-        <div class="marquee" title="Now Playing">
-          <div class="track" id="marqueeText">Selamat datang di MusicNet — Klik lagu untuk memutar...</div>
-        </div>
-
-        <!-- CHANGED: header genre area is now horizontally scrollable.
-             I kept all original buttons so list choices remain available. -->
-        <div class="filter-scroll" aria-label="Genre filters">
-          <button class="filter-btn active" data-genre="all" onclick="filterGenre('all')">All</button>
-          <button class="filter-btn" data-genre="pop" onclick="filterGenre('pop')">Pop</button>
-          <button class="filter-btn" data-genre="slow" onclick="filterGenre('slow')">Slow</button>
-          <button class="filter-btn" data-genre="cover" onclick="filterGenre('cover')">Cover</button>
-          <button class="filter-btn" data-genre="poprock" onclick="filterGenre('poprock')">Pop Rock</button>
-          <button class="filter-btn" data-genre="breakbeat" onclick="filterGenre('breakbeat')">Breakbeat</button>
-          <!-- add more buttons to test scrolling -->
-          <button class="filter-btn" data-genre="jazz" onclick="filterGenre('jazz')">Jazz</button>
-          <button class="filter-btn" data-genre="edm" onclick="filterGenre('edm')">EDM</button>
-          <button class="filter-btn" data-genre="rock" onclick="filterGenre('rock')">Rock</button>
-          <button class="filter-btn" data-genre="retro" onclick="filterGenre('retro')">Retro</button>
-        </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button class="filter-btn" id="shuffleBtn" title="Shuffle">Shuffle</button>
+        <button class="filter-btn" id="repeatBtn" title="Repeat">Repeat</button>
       </div>
-    </header>
+    </div>
+  </div>
+</aside>
+</div>
 
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h2 class="section">Playlist</h2>
-          <div class="filters" id="filters"></div>
+<footer style="margin-top:18px;font-size:12px;text-align:center;color:var(--muted);">
+Created By Afrizal In Oktober 2025
+</footer>
+</div>
 
-          <div class="playlist" id="playlist">
-            <!-- songs injected by JS -->
-          </div>
-        </div>
-      </div>
-
-      <aside>
-        <div class="card player">
-          <div class="cover" id="coverBox">up reverb.mp3", artist:"Lyodra", genre:"slow" },
+<script>
+const playlistData = [
+  { title: "Armada - Apa Kabar Sayang", file: "Mylist/Armada Apa Kabar Sayang Official Audio.mp3", artist:"Armada", genre:"pop" },
+  { title: "Arvian Dwi - Satu Shaff di Belakangku", file: "Mylist/Arvian Dwi Satu Shaff di belakangku.mp3", artist:"Arvian Dwi", genre:"pop" },
+  { title: "Cinta Terlarang - Cover Ilir 7 (Ardila Akbar)", file: "Mylist/Cinta Terlarang Ilir 7 Cover Ardila Akbar.mp3", artist:"Cover", genre:"cover" },
+  { title: "Lyodra - Pesan Terakhir (Speed Up Reverb)", file: "Mylist/lyodra pesan terakhir speed up reverb.mp3", artist:"Lyodra", genre:"slow" },
   { title: "Ziell Ferdia - Merawat Luka (Speed Up Reverb)", file: "Mylist/Merawat Luka_Ziell Ferdia Speed Up Reverb.mp3", artist:"Ziell Ferdia", genre:"slow" },
   { title: "Wali - Takkan Pisah (Cover Ardila)", file: "Mylist/Takkan Pisah Wali Cover Ardila Akbar.mp3", artist:"Wali (cover)", genre:"cover" },
   { title: "Ziell Ferdian - Bawalah Cintamu", file: "Mylist/Ziell Ferdian Bawalah Cintamu.mp3", artist:"Ziell Ferdian", genre:"pop" },
   { title: "Ziell Ferdian - Bawalah Cintamu (Speed Up + Reverb)", file: "Mylist/Ziell Ferdian Bawalah Cintamu Speed up + Reverb.mp3", artist:"Ziell Ferdian", genre:"pop" },
-  {title: "DJ BLOODLINE JEDAG JEDUG REVERB)", file: "Mylist/DJ BLOODLINE JEDAG JEDUG REVERB.mp3", artist:"Unknown", genre:"breakbeat" },
-  {title: "DJ Yali in Romania x Rab Ne Bana De Jodi Remix)", file: "Mylist/DJ Yali in Romania x Rab Ne Bana De Jodi Remix.mp3", artist:"Unknown", genre:"breakbeat" },
-  {title: "Christina Perri - A Thousand Years)", file: "Mylist/Christina Perri - A Thousand Years.mp3", artist:"Christina Perri", genre:"slow" },
-  {title: "Avenged Sevenfold - Dear God)", file: "Mylist/Avenged Sevenfold - Dear God.mp3", artist:"Avenged Sevenfold", genre:"poprock" },
-  {title: "Mad Clown & Kim Na - Young Once Again Descendants of the Sun)", file: "Mylist/Young Once Again Descendants of the Sun.mp3", artist:"Mad Clown & Kim Na", genre:"pop" },
+  { title: "DJ BLOODLINE JEDAG JEDUG REVERB)", file: "Mylist/DJ BLOODLINE JEDAG JEDUG REVERB.mp3", artist:"Unknown", genre:"breakbeat" },
+  { title: "DJ Yali in Romania x Rab Ne Bana De Jodi Remix)", file: "Mylist/DJ Yali in Romania x Rab Ne Bana De Jodi Remix.mp3", artist:"Unknown", genre:"breakbeat" },
+  { title: "Christina Perri - A Thousand Years)", file: "Mylist/Christina Perri - A Thousand Years.mp3", artist:"Christina Perri", genre:"slow" },
+  { title: "Avenged Sevenfold - Dear God)", file: "Mylist/Avenged Sevenfold - Dear God.mp3", artist:"Avenged Sevenfold", genre:"poprock" },
+  { title: "Mad Clown & Kim Na - Young Once Again Descendants of the Sun)", file: "Mylist/Young Once Again Descendants of the Sun.mp3", artist:"Mad Clown & Kim Na", genre:"pop" }
 ];
 
-/* ---------- UI references ---------- */
 const playlistEl = document.getElementById('playlist');
 const marqueeText = document.getElementById('marqueeText');
 const filtersWrap = document.getElementById('filters');
 
-const audio = new Audio();
-audio.preload = 'auto';
-
+const audio = new Audio(); audio.preload = 'auto';
 const nowTitle = document.getElementById('nowTitle');
 const nowArtist = document.getElementById('nowArtist');
 const coverBox = document.getElementById('coverBox');
@@ -286,169 +270,98 @@ const volRange = document.getElementById('volRange');
 const shuffleBtn = document.getElementById('shuffleBtn');
 const repeatBtn = document.getElementById('repeatBtn');
 
-let currentIndex = 0;
-let isPlaying = false;
-let isShuffle = false;
-let isRepeat = false;
-let filteredGenre = 'all';
+let currentIndex=0, isPlaying=false, isShuffle=false, isRepeat=false, filteredGenre='all';
 
-/* ---------- build filter buttons dynamically (optional) ---------- */
+function capitalize(s){return String(s||'').charAt(0).toUpperCase()+String(s||'').slice(1);}
+function formatTime(s){if(!s||isNaN(s)) return '00:00'; const mm=Math.floor(s/60), ss=Math.floor(s%60); return String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');}
+
 function buildFilters(){
   const genres = ['all', ...new Set(playlistData.map(s => s.genre))];
-  filtersWrap.innerHTML = '';
+  const wrap = document.getElementById('filters');
+  wrap.innerHTML = '';
   genres.forEach(g=>{
     const btn = document.createElement('button');
-    btn.className = 'filter-btn' + (g==='all' ? ' active':'');
-    btn.textContent = g === 'all' ? 'All' : capitalize(g);
+    btn.className = `filter-btn${g==='all'?' active':''}`;
+    btn.textContent = capitalize(g);
     btn.dataset.genre = g;
-    btn.onclick = ()=>{ document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); filterGenre(g); };
-    filtersWrap.appendChild(btn);
+    btn.onclick = () => filterGenre(g);
+    wrap.appendChild(btn);
   });
 }
-
-/* ---------- render playlist ---------- */
-function renderPlaylist(){
-  playlistEl.innerHTML = '';
-  const list = playlistData.filter(s => filteredGenre === 'all' ? true : s.genre === filteredGenre);
-  list.forEach((s, idx)=>{
-    const item = document.createElement('div');
-    item.className = 'song';
-    item.dataset.index = idx;
-    item.innerHTML = `<div class="meta"><div class="title">${s.title}</div><div class="artist">${s.artist} • ${capitalize(s.genre)}</div></div><div class="badge">▶</div>`;
-    item.onclick = ()=>{ selectAndPlayByFilteredIndex(idx); };
-    playlistEl.appendChild(item);
-  });
-}
-
-/* Because filtered list may differ from original indexes, map selection */
-function selectAndPlayByFilteredIndex(filteredIdx){
-  const filtered = playlistData.filter(s => filteredGenre === 'all' ? true : s.genre === filteredGenre);
-  const song = filtered[filteredIdx];
-  const realIndex = playlistData.indexOf(song);
-  playIndex(realIndex);
-}
-
-/* ---------- playback functions ---------- */
-function playIndex(i){
-  if(i < 0) i = playlistData.length -1;
-  if(i >= playlistData.length) i = 0;
-  currentIndex = i;
-  const item = playlistData[currentIndex];
-  audio.src = item.file;
-  audio.play().catch(e=>{ console.warn('play err', e); });
-  isPlaying = true;
-  updateUIPlaying();
-}
-
-function togglePlay(){
-  if(!audio.src){ playIndex(currentIndex); return; }
-  if(isPlaying){ audio.pause(); isPlaying = false; }
-  else { audio.play().catch(e=>{}); isPlaying = true; }
-  updateUIPlaying();
-}
-
-function prevTrack(){
-  if(audio.currentTime > 3){ audio.currentTime = 0; updateProgress(); return; }
-  let next = currentIndex -1;
-  if(next < 0) next = playlistData.length-1;
-  playIndex(next);
-}
-
-function nextTrack(){
-  if(isShuffle){ currentIndex = Math.floor(Math.random()*playlistData.length); playIndex(currentIndex); return; }
-  let next = currentIndex +1;
-  if(next >= playlistData.length) next = 0;
-  playIndex(next);
-}
-
-/* ---------- UI updates ---------- */
-function updateUIPlaying(){
-  // update marquee + now playing
-  const item = playlistData[currentIndex];
-  marqueeText.textContent = item ? `Now Playing — ${item.title} • ${item.artist}` : 'Click a song to play';
-  nowTitle.textContent = item ? item.title : 'Belum diputar';
-  nowArtist.textContent = item ? item.artist : '—';
-
-  // update playing classes
-  document.querySelectorAll('.song').forEach(el=>{
-    el.classList.remove('playing');
-    const idx = parseInt(el.dataset.index,10);
-    const filtered = playlistData.filter(s => filteredGenre === 'all' ? true : s.genre === filteredGenre);
-    if(filtered[idx] && playlistData.indexOf(filtered[idx]) === currentIndex){
-      el.classList.add('playing');
-    }
-  });
-
-  // play button state
-  if(isPlaying) playBtn.classList.add('playing'), playBtn.textContent = '⏸';
-  else playBtn.classList.remove('playing'), playBtn.textContent = '▶';
-}
-
-/* ---------- progress handling ---------- */
-audio.addEventListener('timeupdate', updateProgress);
-audio.addEventListener('loadedmetadata', ()=>{ durationEl.textContent = formatTime(audio.duration || 0); });
-audio.addEventListener('ended', ()=>{
-  if(isRepeat) { playIndex(currentIndex); return; }
-  nextTrack();
-});
-
-function updateProgress(){
-  const pct = (audio.currentTime / (audio.duration || 1)) * 100;
-  progressBar.style.width = pct + '%';
-  currentTimeEl.textContent = formatTime(audio.currentTime || 0);
-}
-
-/* seek on click */
-document.getElementById('progressWrap').addEventListener('click', (e)=>{
-  const rect = e.currentTarget.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const pct = x / rect.width;
-  audio.currentTime = (audio.duration || 0) * pct;
-  updateProgress();
-});
-
-/* volume */
-volRange.addEventListener('input', ()=>{ audio.volume = parseFloat(volRange.value); });
-
-/* buttons */
-playBtn.addEventListener('click', togglePlay);
-prevBtn.addEventListener('click', prevTrack);
-nextBtn.addEventListener('click', nextTrack);
-
-shuffleBtn.addEventListener('click', ()=>{
-  isShuffle = !isShuffle;
-  shuffleBtn.classList.toggle('active', isShuffle);
-});
-repeatBtn.addEventListener('click', ()=>{
-  isRepeat = !isRepeat;
-  repeatBtn.classList.toggle('active', isRepeat);
-});
-
-/* helper */
-function formatTime(s){
-  if(!s || isNaN(s)) return '00:00';
-  const mm = Math.floor(s/60); const ss = Math.floor(s%60);
-  return String(mm).padStart(2,'0') + ':' + String(ss).padStart(2,'0');
-}
-function capitalize(str){ return String(str||'').charAt(0).toUpperCase() + String(str||'').slice(1); }
 
 function filterGenre(genre){
   filteredGenre = genre;
-  // update filter button states
-  document.querySelectorAll('.filter-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.genre === genre);
-  });
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll(`.filter-btn[data-genre="${genre}"]`).forEach(b=>b.classList.add('active'));
   renderPlaylist();
-  updateUIPlaying();
 }
 
-/* initial render */
-buildFilters();
-renderPlaylist();
-updateUIPlaying();
+function renderPlaylist(){
+  playlistEl.innerHTML = '';
+  playlistData.forEach((song,i)=>{
+    if(filteredGenre!=='all' && song.genre!==filteredGenre) return;
+    const div = document.createElement('div');
+    div.className = 'song'+(i===currentIndex?' playing':'');
+    div.onclick = ()=>{currentIndex=i; loadSong(); playAudio();}
+    div.innerHTML = `<div class="meta"><div class="title">${song.title}</div><div class="artist">${song.artist}</div></div>
+                     <div class="badge">${capitalize(song.genre)}</div>`;
+    playlistEl.appendChild(div);
+  });
+}
 
-/* optionally autoplay first track if user wants */
-// playIndex(0);
+function loadSong(){
+  const song = playlistData[currentIndex];
+  audio.src = song.file;
+  nowTitle.textContent = song.title;
+  nowArtist.textContent = song.artist;
+  marqueeText.textContent = song.title+' — '+song.artist;
+  document.querySelectorAll('.song').forEach((s,i)=>{
+    s.classList.toggle('playing', i===currentIndex);
+  });
+}
+
+function playAudio(){
+  audio.play().then(()=>{isPlaying=true; playBtn.textContent='⏸'; playBtn.classList.add('playing');}).catch(()=>{});
+}
+function pauseAudio(){
+  audio.pause(); isPlaying=false; playBtn.textContent='▶'; playBtn.classList.remove('playing');
+}
+
+playBtn.onclick = ()=>{isPlaying?pauseAudio():playAudio();}
+prevBtn.onclick = ()=>{currentIndex = (currentIndex-1+playlistData.length)%playlistData.length; loadSong(); playAudio();}
+nextBtn.onclick = ()=>{nextSong();}
+
+function nextSong(){
+  if(isShuffle){
+    let rand; do{rand=Math.floor(Math.random()*playlistData.length);}while(rand===currentIndex);
+    currentIndex=rand;
+  }else{
+    currentIndex = (currentIndex+1)%playlistData.length;
+  }
+  loadSong(); playAudio();
+}
+
+shuffleBtn.onclick = ()=>{isShuffle=!isShuffle; shuffleBtn.classList.toggle('active', isShuffle);}
+repeatBtn.onclick = ()=>{isRepeat=!isRepeat; repeatBtn.classList.toggle('active', isRepeat);}
+
+audio.ontimeupdate = ()=>{
+  const progress = (audio.currentTime/audio.duration)*100;
+  progressBar.style.width = (isNaN(progress)?0:progress)+'%';
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+  durationEl.textContent = formatTime(audio.duration);
+}
+
+audio.onended = ()=>{
+  if(isRepeat) { playAudio(); } else { nextSong(); }
+}
+
+volRange.oninput = ()=>{audio.volume=volRange.value;}
+
+window.onload = ()=>{
+  buildFilters();
+  renderPlaylist();
+  loadSong();
+}
 </script>
 </body>
 </html>
