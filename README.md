@@ -1,11 +1,10 @@
 
+# 🎵 Music-Net  
 
-# 🎵 MusicNet  
-
-[![GitHub license](https://img.shields.io/github/license/envy766/MusicNet)](LICENSE)  
-[![GitHub stars](https://img.shields.io/github/stars/envy766/MusicNet?style=social)](https://github.com/envy766/MusicNet/stargazers)  
-[![GitHub forks](https://img.shields.io/github/forks/envy766/MusicNet?style=social)](https://github.com/envy766/MusicNet/network/members)  
-[![GitHub issues](https://img.shields.io/github/issues/envy766/MusicNet)](https://github.com/envy766/MusicNet/issues)  
+[![GitHub license](https://img.shields.io/github/license/envy766/Music-Net)](LICENSE)  
+[![GitHub stars](https://img.shields.io/github/stars/envy766/Music-Net?style=social)](https://github.com/envy766/Music-Net/stargazers)  
+[![GitHub forks](https://img.shields.io/github/forks/envy766/Music-Net?style=social)](https://github.com/envy766/Music-Net/network/members)  
+[![GitHub issues](https://img.shields.io/github/issues/envy766/Music-Net)](https://github.com/envy766/Music-Net/issues)  
 
 MusicNet adalah project **pemutar musik berbasis web** dengan tampilan futuristik, elegan, dan interaktif.  
 Didesain agar mudah digunakan langsung di browser tanpa instalasi tambahan.  
@@ -23,5 +22,3 @@ Didesain agar mudah digunakan langsung di browser tanpa instalasi tambahan.
 ---
 
 ## 📂 Struktur Folder
-
----
