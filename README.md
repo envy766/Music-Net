@@ -22,3 +22,9 @@ Didesain agar mudah digunakan langsung di browser tanpa instalasi tambahan.
 ---
 
 ## 📂 Struktur Folder
+- MusicNet→ Folder Utama 
+- Mylist→ menyimpan file musik
+- blog.html→ halaman utama
+- README.md → dokumentasi
+- LICENSE → lisensi
+- .gitignore → file yang diabaikan Git
