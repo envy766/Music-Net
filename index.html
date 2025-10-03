@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -171,7 +172,7 @@ const playlistData = [
   { title: "Arvian Dwi - Satu Shaff di Belakangku", file: "Mylist/Arvian Dwi Satu Shaff di belakangku.mp3", artist:"Arvian Dwi", genre:"pop" },
   { title: "Cinta Terlarang - Cover Ilir 7 (Ardila Akbar)", file: "Mylist/Cinta Terlarang Ilir 7 Cover Ardila Akbar.mp3", artist:"Cover", genre:"cover" },
   { title: "Lyodra - Pesan Terakhir (Speed Up Reverb)", file: "Mylist/lyodra pesan terakhir speed up reverb.mp3", artist:"Lyodra", genre:"slow" },
-  { title: "Ziell Ferdia - Merawat Luka (Speed Up Reverb)", file: "Mylist/Merawat Luka_Ziell Ferdia Speed Up Reverb.mp3", artist:"Ziell Ferdia", genre:"slow" },
+  { title: "Ziell Ferdian - Merawat Luka (Speed Up Reverb)", file: "Mylist/Merawat Luka_Ziell Ferdian Speed Up Reverb.mp3", artist:"Ziell Ferdian", genre:"slow" },
   { title: "Wali - Takkan Pisah (Cover Ardila)", file: "Mylist/Takkan Pisah Wali Cover Ardila Akbar.mp3", artist:"Wali (cover)", genre:"cover" },
   { title: "Ziell Ferdian - Bawalah Cintamu", file: "Mylist/Ziell Ferdian Bawalah Cintamu.mp3", artist:"Ziell Ferdian", genre:"pop" },
   { title: "Ziell Ferdian - Bawalah Cintamu (Speed Up + Reverb)", file: "Mylist/Ziell Ferdian Bawalah Cintamu Speed up + Reverb.mp3", artist:"Ziell Ferdian", genre:"pop" },
@@ -246,22 +247,48 @@ function selectAndPlayByFilteredIndex(filteredIdx){
 
 // ---------- Playback ----------
 function playIndex(i){
-  if(i<0)i=playlistData.length-1;
-  if(i>=playlistData.length)i=0;
-  currentIndex=i;
+  if(i < 0) i = playlistData.length - 1;
+  if(i >= playlistData.length) i = 0;
+  currentIndex = i;
   const item = playlistData[currentIndex];
-  audio.src=item.file;
-  audio.play().catch(e=>console.warn('play err',e));
-  isPlaying=true;
-  updateUIPlaying();
+  audio.src = item.file;
+  audio.load();  // pastikan browser memuat audio sebelum play
+  audio.play()
+    .then(() => {
+      isPlaying = true;
+      console.log('Playing:', audio.src);
+      updateUIPlaying();
+    })
+    .catch(e => {
+      console.warn('Play error:', e);
+      isPlaying = false;
+      updateUIPlaying();
+    });
 }
 
 function togglePlay(){
-  if(!audio.src){playIndex(currentIndex);return;}
+  if(!audio.src){
+    playIndex(currentIndex);
+    return;
+  }
   if(isPlaying){
-audio.pause(); isPlaying=false;}
-  else{audio.play().catch(e=>console.warn('play err',e)); isPlaying=true;}
-  updateUIPlaying();
+    audio.pause();
+    isPlaying = false;
+    console.log('Paused');
+    updateUIPlaying();
+  } else {
+    audio.play()
+      .then(() => {
+        isPlaying = true;
+        console.log('Playing');
+        updateUIPlaying();
+      })
+      .catch(e => {
+        console.warn('Play error:', e);
+        isPlaying = false;
+        updateUIPlaying();
+      });
+  }
 }
 
 function playNext(){
